@@ -174,6 +174,7 @@ class PaymentFragment : Fragment() {
         val userCode = "iamport"
         val certification = IamPortCertification(
             merchant_uid = getRandomMerchantUid(),
+            pg = "danal",
             company = "유어포트",
         )
 

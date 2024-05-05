@@ -13,6 +13,7 @@ import kotlinx.serialization.Serializable
 @Parcelize
 data class IamPortCertification(
     val merchant_uid: String,
+    val pg: String? = null,
     val min_age: Int? = null,
     val name: String? = null,
     val phone: String? = null,

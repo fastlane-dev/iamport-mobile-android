@@ -420,7 +420,7 @@ internal class IamportSdk(
     }
 
     /**
-     * 결제 요청 실행
+     * 본인 인증 실행
      */
     private fun requestCertification(payment: Payment) {
         // 네트워크 연결 상태 체크
