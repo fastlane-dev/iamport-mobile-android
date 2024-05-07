@@ -38,6 +38,6 @@ class PaymentResultFragment : Fragment() {
         if (iamPortResponse == null) {
             return false
         }
-        return iamPortResponse.success == true || iamPortResponse.imp_success == true
+        return iamPortResponse.success == true
     }
 }

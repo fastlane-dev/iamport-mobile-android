@@ -21,7 +21,6 @@ https://docs.iamport.kr/tech/imp?lang=ko#param
 // 이니시스 실시간 계좌이체 -> imp_success, success 없음?
 @Parcelize
 data class IamPortResponse(
-    val imp_success: Boolean? = false,
     val success: Boolean? = false,
     val imp_uid: String?,
     val merchant_uid: String?,
@@ -39,7 +38,6 @@ data class IamPortResponse(
 
         fun makeSuccess(merchantUid: String, impUid: String? = null, msg: String): IamPortResponse {
             return IamPortResponse(
-                imp_success = true,
                 success = true,
                 imp_uid = impUid,
                 merchant_uid = merchantUid,
@@ -49,7 +47,6 @@ data class IamPortResponse(
 
         fun makeFail(merchantUid: String, impUid: String? = null, msg: String): IamPortResponse {
             return IamPortResponse(
-                imp_success = false,
                 success = false,
                 imp_uid = impUid,
                 merchant_uid = merchantUid,
