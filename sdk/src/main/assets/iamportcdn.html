@@ -8,8 +8,12 @@
             console.log("Wait cdn-iamport-sdk...");
 
             document.addEventListener('DOMContentLoaded', () => {
-                console.log("Load finish cdn-iamport-sdk...");
-                IAMPORT.startWorkingSdk()
+                if (typeof IAMPORT !== 'undefined') {
+                    console.log("IAMPORT is defined");
+                    IAMPORT.startWorkingSdk();
+                } else {
+                    console.error("IAMPORT is not defined");
+                }
             });
 
             function dLog(log) {
