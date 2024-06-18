@@ -247,7 +247,6 @@ class WebViewActivity : BaseActivity<WebViewModel>(), IamportKoinComponent {
         webview.run {
             fitsSystemWindows = true
             settingsWebView(this)
-            setLayerType(View.LAYER_TYPE_HARDWARE, null)
 //            clearCache(true)
             addJavascriptInterface(
                 JsNativeInterface(payment, get(named("${CONST.KOIN_KEY}Gson")), evaluateJS),
@@ -255,7 +254,6 @@ class WebViewActivity : BaseActivity<WebViewModel>(), IamportKoinComponent {
             )
             webViewClient = viewModel.getWebViewClient()
             visibility = View.VISIBLE
-            loadingVisible(false)
             webChromeClient = IamportWebChromeClient()
             loadUrl(CONST.PAYMENT_FILE_URL) // load WebView
             Log.i("Iamport", "loadUrl : ${CONST.PAYMENT_FILE_URL}")
