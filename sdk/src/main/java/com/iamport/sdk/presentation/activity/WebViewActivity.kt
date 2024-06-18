@@ -3,6 +3,7 @@ package com.iamport.sdk.presentation.activity
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.widget.ProgressBar
@@ -254,9 +255,10 @@ class WebViewActivity : BaseActivity<WebViewModel>(), IamportKoinComponent {
             )
             webViewClient = viewModel.getWebViewClient()
             visibility = View.VISIBLE
-
-            loadUrl(CONST.PAYMENT_FILE_URL) // load WebView
+            loadingVisible(false)
             webChromeClient = IamportWebChromeClient()
+            loadUrl(CONST.PAYMENT_FILE_URL) // load WebView
+            Log.i("Iamport", "loadUrl : ${CONST.PAYMENT_FILE_URL}")
         }
     }
 

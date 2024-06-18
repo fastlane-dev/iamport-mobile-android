@@ -16,6 +16,16 @@ open class MyWebViewClient : IamPortMobileModeWebViewClient() {
         return super.shouldOverrideUrlLoading(view, request)
     }
 
+    override fun onReceivedError(view: WebView?, errorCode: Int, description: String?, failingUrl: String?) {
+        super.onReceivedError(view, errorCode, description, failingUrl)
+        Log.e("MyWebViewClient", "onReceivedError ${errorCode}${description}")
+    }
+
+    override fun onLoadResource(view: WebView?, url: String?) {
+        super.onLoadResource(view, url)
+        Log.e("MyWebViewClient", "onLoadResource ${url}")
+
+    }
 }
 
 open class MyWebViewChromeClient : IamportWebChromeClient() {
@@ -24,5 +34,7 @@ open class MyWebViewChromeClient : IamportWebChromeClient() {
         Log.i("MyWebViewChromeClient", "called this function")
         return super.onJsConfirm(view, url, message, result)
     }
+
+
 }
 
