@@ -4,20 +4,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-    <p>h</p>
         <script type="text/javascript">
             console.log("Wait cdn-iamport-sdk...");
 
             document.addEventListener('DOMContentLoaded', () => {
-                console.log("Load DOMContentLoaded");
-            });
-
-            window.addEventListener('load', () => {
                 console.log("Load finish cdn-iamport-sdk...");
                 IAMPORT.startWorkingSdk()
             });
-
-
 
             function dLog(log) {
     <!--            console.log(log)-->
@@ -68,7 +61,6 @@
             }
 
         </script>
-        <script defer type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-        <script defer type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+        <script defer type="text/javascript"  src="https://cdn.iamport.kr/v1/iamport.js"></script>
     </body>
 </html>
