@@ -9,9 +9,15 @@
             console.log("Wait cdn-iamport-sdk...");
 
             document.addEventListener('DOMContentLoaded', () => {
+                console.log("Load DOMContentLoaded");
+            });
+
+            window.addEventListener('load', () => {
                 console.log("Load finish cdn-iamport-sdk...");
                 IAMPORT.startWorkingSdk()
             });
+
+
 
             function dLog(log) {
     <!--            console.log(log)-->
