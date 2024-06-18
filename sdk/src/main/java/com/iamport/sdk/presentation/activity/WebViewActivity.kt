@@ -248,7 +248,7 @@ class WebViewActivity : BaseActivity<WebViewModel>(), IamportKoinComponent {
             fitsSystemWindows = true
             settingsWebView(this)
             setLayerType(View.LAYER_TYPE_HARDWARE, null)
-            clearCache(true)
+//            clearCache(true)
             addJavascriptInterface(
                 JsNativeInterface(payment, get(named("${CONST.KOIN_KEY}Gson")), evaluateJS),
                 CONST.PAYMENT_WEBVIEW_JS_INTERFACE_NAME
