@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.widget.ProgressBar
+import androidx.lifecycle.lifecycleScope
 import com.google.gson.GsonBuilder
 import com.iamport.sdk.R
 import com.iamport.sdk.data.sdk.IamPortResponse
@@ -228,36 +229,40 @@ class WebViewActivity : BaseActivity<WebViewModel>(), IamportKoinComponent {
      * 웹뷰 오픈
      */
     override fun openWebView(payment: Payment) {
-        d("오픈! 웹뷰")
 
-        val evaluateJS = fun(jsMethod: String) {
-            val js = "javascript:$jsMethod"
-            d("evaluateJS => $js")
-            launch {
-                webview.run {
-                    this.loadUrl(js)
+        runOnUiThread {
+            d("오픈! 웹뷰")
+
+            val evaluateJS = fun(jsMethod: String) {
+                val js = "javascript:$jsMethod"
+                d("evaluateJS => $js")
+                launch {
+                    webview.run {
+                        this.loadUrl(js)
+                    }
                 }
+            }
+
+            setTheme(R.style.Theme_AppCompat_Transparent_NoActionBar)
+//        updateAlpha(true)
+            loadingVisible(true)
+
+            webview.run {
+                fitsSystemWindows = true
+                settingsWebView(this)
+//            clearCache(true)
+                addJavascriptInterface(
+                    JsNativeInterface(payment, get(named("${CONST.KOIN_KEY}Gson")), evaluateJS),
+                    CONST.PAYMENT_WEBVIEW_JS_INTERFACE_NAME
+                )
+                webViewClient = viewModel.getWebViewClient()
+                visibility = View.VISIBLE
+                webChromeClient = IamportWebChromeClient()
+                loadUrl(CONST.PAYMENT_FILE_URL) // load WebView
+                Log.i("Iamport", "loadUrl : ${CONST.PAYMENT_FILE_URL}")
             }
         }
 
-        setTheme(R.style.Theme_AppCompat_Transparent_NoActionBar)
-//        updateAlpha(true)
-        loadingVisible(true)
-
-        webview.run {
-            fitsSystemWindows = true
-            settingsWebView(this)
-//            clearCache(true)
-            addJavascriptInterface(
-                JsNativeInterface(payment, get(named("${CONST.KOIN_KEY}Gson")), evaluateJS),
-                CONST.PAYMENT_WEBVIEW_JS_INTERFACE_NAME
-            )
-            webViewClient = viewModel.getWebViewClient()
-            visibility = View.VISIBLE
-            webChromeClient = IamportWebChromeClient()
-            loadUrl(CONST.PAYMENT_FILE_URL) // load WebView
-            Log.i("Iamport", "loadUrl : ${CONST.PAYMENT_FILE_URL}")
-        }
     }
 
 
