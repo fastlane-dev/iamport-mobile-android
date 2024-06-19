@@ -32,7 +32,7 @@ object CONST {
 
     const val PAYMENT_PLAY_STORE_URL = "market://details?id="
 
-    const val PAYMENT_FILE_URL = "file:///android_asset/iamportcdn.html"
+    const val PAYMENT_FILE_URL = "https://firebasestorage.googleapis.com/v0/b/yeoshinticket.appspot.com/o/auth%2Fiamportcdn.html?alt=media&token=d7ed1f20-97f1-4300-8fd9-7275d4ec2bbb"
     const val PAYMENT_MOBILE_WEB_FILE_URL = "file:///android_asset/mobileweb.html"
 
     const val IAMPORT_LOG = "IAMPORT"
