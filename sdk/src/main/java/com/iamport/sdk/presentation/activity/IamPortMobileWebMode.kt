@@ -59,8 +59,6 @@ open class IamPortMobileWebMode() : IamPortWebViewMode() {
         webview?.run {
             fitsSystemWindows = true
             settingsWebView(this)
-            setLayerType(View.LAYER_TYPE_HARDWARE, null)
-            clearCache(true) // FIXME: 안지워도 될까? 고민..
             visibility = View.VISIBLE
 //            webChromeClient = IamportWebChromeClient()
 
