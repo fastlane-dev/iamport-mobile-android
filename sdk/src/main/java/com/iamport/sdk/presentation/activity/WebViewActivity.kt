@@ -62,7 +62,7 @@ class WebViewActivity : BaseActivity<WebViewModel>(), IamportKoinComponent {
         super.onNewIntent(intent)
         this.intent = intent
 //        removeObserveViewModel(payment)
-        initStart()
+//        initStart()
     }
 
     /**
