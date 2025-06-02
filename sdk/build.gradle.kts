@@ -143,3 +143,7 @@ dependencies {
 
     implementation(Libs.lottie)
 }
+
+kotlin {
+    jvmToolchain(21)
+}
