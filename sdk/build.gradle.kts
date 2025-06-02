@@ -1,3 +1,19 @@
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+kotlin {
+    jvmToolchain(17)
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+
 plugins {
     id("com.android.library")
 //    id("com.android.application")
@@ -13,7 +29,6 @@ android {
     namespace = "com.iamport.sdk"
 
     compileSdk = 35
-    buildToolsVersion = "34.0.0"
 
     defaultConfig {
         minSdk = 21
@@ -46,12 +61,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     buildFeatures {
         dataBinding = true
+        buildConfig = true
     }
 
     lint {
@@ -142,8 +158,4 @@ dependencies {
     implementation(Libs.workRuntimeKtx)
 
     implementation(Libs.lottie)
-}
-
-kotlin {
-    jvmToolchain(21)
 }
