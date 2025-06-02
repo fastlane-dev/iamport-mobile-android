@@ -12,15 +12,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.RequiresApi
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.gson.GsonBuilder
-import com.iamport.sampleapp.BuildConfig
 import com.iamport.sampleapp.MerchantReceiver
 import com.iamport.sampleapp.PaymentResultData.result
-import com.iamport.sampleapp.R
 import com.iamport.sampleapp.ViewModel
 import com.iamport.sampleapp.databinding.PaymentFragmentBinding
 import com.iamport.sdk.data.sdk.IamPortApprove
@@ -36,7 +33,7 @@ import com.iamport.sdk.domain.utils.Util
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.*
+import java.util.Date
 
 class PaymentFragment : Fragment() {
 
