@@ -6,6 +6,8 @@ import android.net.Uri
 import android.view.View
 import android.webkit.WebView
 import android.widget.ProgressBar
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.gson.GsonBuilder
 import com.iamport.sdk.R
 import com.iamport.sdk.data.sdk.IamPortResponse
@@ -57,6 +59,12 @@ class WebViewActivity : BaseActivity<WebViewModel>(), IamportKoinComponent {
 
         loading = findViewById(R.id.loading)
         webview = findViewById(R.id.webview)
+
+        ViewCompat.setOnApplyWindowInsetsListener(webview) { view, insets ->
+            val navInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(0, 0, 0, navInsets.bottom)
+            insets
+        }
 
         initLoading()
 

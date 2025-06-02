@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+//    id("com.android.application")
     id("kotlin-android")
     kotlin("kapt")
     id("kotlin-parcelize")
@@ -11,7 +12,7 @@ plugins {
 android {
     namespace = "com.iamport.sdk"
 
-    compileSdk = 34
+    compileSdk = 35
     buildToolsVersion = "34.0.0"
 
     defaultConfig {
@@ -20,6 +21,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+//        proguardFiles("proguard-rules.pro")
     }
 
     buildTypes {
@@ -50,8 +52,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     buildFeatures {
