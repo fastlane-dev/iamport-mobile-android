@@ -6,7 +6,6 @@
       <module name="AndroidSdk.buildSrc" target="21" />
       <module name="AndroidSdk.buildSrc.main" target="21" />
       <module name="AndroidSdk.buildSrc.test" target="21" />
-      <module name="AndroidSdk.sdk" target="21" />
       <module name="iamport-android.buildSrc" target="11" />
     </bytecodeTargetLevel>
   </component>
