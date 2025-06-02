@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+//    id("com.android.application")
     id("kotlin-android")
     kotlin("kapt")
     id("kotlin-parcelize")
@@ -11,7 +12,7 @@ plugins {
 android {
     namespace = "com.iamport.sdk"
 
-    compileSdk = 34
+    compileSdk = 35
     buildToolsVersion = "34.0.0"
 
     defaultConfig {
@@ -20,6 +21,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+//        proguardFiles("proguard-rules.pro")
     }
 
     buildTypes {
@@ -43,15 +45,9 @@ android {
         }
     }
 
-    repositories {
-        flatDir {
-            dirs("libs")
-        }
-    }
-
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     buildFeatures {
@@ -125,7 +121,6 @@ dependencies {
     testImplementation(Libs.koin_test_junit4)
     implementation(Libs.koin_android)
     implementation(Libs.koin_android_compat)
-    implementation(Libs.koin_android_compose)
 
     // Retorofit
     implementation(Libs.retrofit)
@@ -143,10 +138,8 @@ dependencies {
     implementation(Libs.rxandroid)
     implementation(Libs.rxjava2_debug)
 
-    // loading animation
-    implementation(Libs.spinKit)
-
     implementation(Libs.serialization)
     implementation(Libs.workRuntimeKtx)
 
+    implementation(Libs.lottie)
 }
