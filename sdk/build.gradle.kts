@@ -45,12 +45,6 @@ android {
         }
     }
 
-    repositories {
-        flatDir {
-            dirs("libs")
-        }
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
@@ -127,7 +121,6 @@ dependencies {
     testImplementation(Libs.koin_test_junit4)
     implementation(Libs.koin_android)
     implementation(Libs.koin_android_compat)
-    implementation(Libs.koin_android_compose)
 
     // Retorofit
     implementation(Libs.retrofit)
@@ -145,10 +138,8 @@ dependencies {
     implementation(Libs.rxandroid)
     implementation(Libs.rxjava2_debug)
 
-    // loading animation
-    implementation(Libs.spinKit)
-
     implementation(Libs.serialization)
     implementation(Libs.workRuntimeKtx)
 
+    implementation(Libs.lottie)
 }

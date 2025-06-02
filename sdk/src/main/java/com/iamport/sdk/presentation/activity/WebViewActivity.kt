@@ -8,6 +8,7 @@ import android.webkit.WebView
 import android.widget.ProgressBar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.airbnb.lottie.LottieAnimationView
 import com.google.gson.GsonBuilder
 import com.iamport.sdk.R
 import com.iamport.sdk.data.sdk.IamPortResponse
@@ -30,7 +31,7 @@ class WebViewActivity : BaseActivity<WebViewModel>(), IamportKoinComponent {
     override val layoutResourceId: Int = R.layout.webview_activity
     override val viewModel: WebViewModel by viewModel()
 
-    private lateinit var loading: ProgressBar
+    private lateinit var loading: LottieAnimationView
     private lateinit var webview: WebView
     private var payment: Payment? = null
 

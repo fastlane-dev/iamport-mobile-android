@@ -23,9 +23,12 @@ https://docs.iamport.kr/tech/imp?lang=ko#param
 data class IamPortResponse(
     val success: Boolean? = false,
     val imp_uid: String?,
+    val txId: String? = null,
     val merchant_uid: String?,
     val error_msg: String? = null,
+    val message: String? = null,
     val error_code: String? = null,
+    val code: String? = null,
 ) : Parcelable {
     companion object {
         fun makeSuccess(payment: Payment, impUid: String? = null, msg: String): IamPortResponse {
