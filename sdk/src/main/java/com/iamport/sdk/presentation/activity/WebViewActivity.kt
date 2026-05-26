@@ -47,13 +47,15 @@ class WebViewActivity : BaseActivity<WebViewModel>(), IamportKoinComponent {
         super.onDestroy()
     }
 
-    //NOTE hCaptchaLifecycle이슈로 resumeTimers / pauseTimers 제거(26.05.26)
+    //NOTE DomContentLoaded 가 호출되지 않는 문제 해결을 위한 onResume/onPause
     override fun onResume() {
         super.onResume()
+        webview.resumeTimers()
     }
 
     override fun onPause() {
         super.onPause()
+        webview.pauseTimers()
     }
 
     override fun initStart() {
