@@ -6,9 +6,10 @@ import android.util.Log
 import android.webkit.WebSettings
 import android.webkit.WebView
 import androidx.activity.ComponentActivity
-import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import com.iamport.sdk.BuildConfig
 import com.iamport.sdk.BuildConfig.DEBUG
@@ -53,7 +54,6 @@ object Iamport {
     private var approveCallback: ((IamPortApprove) -> Unit)? = null // 차이 결제 상태 approve 콜백
 
     // 웹뷰 액티비티 런처
-    private var webViewActivityLauncher: ActivityResultLauncher<Payment>? = null
     private val webViewActivityContract = WebViewActivityContract()
 
     // 중복호출 방지 Utils
@@ -225,11 +225,12 @@ object Iamport {
         preventOverlapRun.init()
         iamportSdk = null
 
-        webViewActivityLauncher = componentActivity.registerForActivityResult(webViewActivityContract) {
+        val launcher = componentActivity.registerForActivityResult(webViewActivityContract) {
             callback(it)
         }
 
-        iamportSdk = IamportSdk(activity = WeakReference(componentActivity), webViewActivityLauncher = webViewActivityLauncher)
+        val sdk = IamportSdk(activity = WeakReference(componentActivity), webViewActivityLauncher = launcher)
+        bindToHost(componentActivity, sdk)
     }
 
 
@@ -253,11 +254,28 @@ object Iamport {
         preventOverlapRun.init()
         iamportSdk = null
 
-        webViewActivityLauncher = fragment.registerForActivityResult(webViewActivityContract) {
+        val launcher = fragment.registerForActivityResult(webViewActivityContract) {
             callback(it)
         }
 
-        iamportSdk = IamportSdk(fragment = WeakReference(fragment), webViewActivityLauncher = webViewActivityLauncher)
+        val sdk = IamportSdk(fragment = WeakReference(fragment), webViewActivityLauncher = launcher)
+        bindToHost(fragment, sdk)
+    }
+
+    private fun bindToHost(host: LifecycleOwner, sdk: IamportSdk) {
+        iamportSdk = sdk
+        host.lifecycle.addObserver(object : DefaultLifecycleObserver {
+            override fun onDestroy(owner: LifecycleOwner) {
+                // A previous host can be destroyed after a new host calls init.
+                if (iamportSdk !== sdk) return
+
+                try {
+                    sdk.close()
+                } finally {
+                    iamportSdk = null
+                }
+            }
+        })
     }
 
     /**
